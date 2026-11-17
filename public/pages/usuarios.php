@@ -18,7 +18,7 @@ require __DIR__ . '/common/header.php';
   <main class="contenido">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="mb-0">Usuarios</h1>
-      <?php renderBuscador($busqueda, 'Buscar por nombre'); ?>
+      <?php renderBuscador($busqueda, 'Buscar'); ?>
       <a href="/pages/usuario_form.php" class="btn btn-verde">Nuevo usuario</a>
     </div>
 

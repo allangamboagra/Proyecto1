@@ -38,7 +38,7 @@ require __DIR__ . '/common/header.php';
 
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="mb-0">Préstamos actuales</h1>
-      <?php renderBuscador($busqueda, 'Buscar por nombre del solicitante'); ?>
+      <?php renderBuscador($busqueda, 'Buscar'); ?>
       <?php if ($esOperador): ?>
         <a href="/pages/prestamo_form.php" class="btn btn-verde">Nuevo préstamo</a>
       <?php else: ?>

@@ -23,7 +23,7 @@ require __DIR__ . '/common/header.php';
   <main class="contenido">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="mb-0">Equipos</h1>
-      <?php renderBuscador($busqueda, 'Buscar por nombre del dispositivo'); ?>
+      <?php renderBuscador($busqueda, 'Buscar'); ?>
       <?php if ($esAdmin): ?>
         <a href="/pages/equipo_form.php" class="btn btn-verde">Nuevo equipo</a>
       <?php else: ?>
