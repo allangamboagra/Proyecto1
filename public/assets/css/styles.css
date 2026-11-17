@@ -1,0 +1,96 @@
+/* Colores verde musgo del proyecto. Bootstrap se encarga del resto del formato. */
+:root {
+  --verde: #5e6e3e;
+  --verde-oscuro: #4a5830;
+  --menu-fondo: #3f4c2d;
+  --menu-texto: #e6ebd8;
+  --fondo: #f3f4ef;
+}
+
+body {
+  background: var(--fondo);
+}
+
+.btn-verde {
+  background-color: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+
+.btn-verde:hover,
+.btn-verde:focus {
+  background-color: var(--verde-oscuro);
+  border-color: var(--verde-oscuro);
+  color: #fff;
+}
+
+/* Login */
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Layout con menú lateral */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.menu {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0;
+  background: var(--menu-fondo);
+  color: var(--menu-texto);
+}
+
+.menu-marca {
+  font-weight: 700;
+  padding: 0 1.25rem 1.25rem;
+  margin-bottom: .75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.menu .nav-link {
+  color: var(--menu-texto);
+  padding: .4rem 1rem;
+  font-size: .9rem;
+}
+
+.menu .nav-link:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
+.menu .nav-link.activo {
+  background: rgba(255, 255, 255, .15);
+  font-weight: 600;
+}
+
+.menu-usuario {
+  margin-top: auto;
+  padding: 1rem 1.25rem 0;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  font-size: .9rem;
+}
+
+.contenido {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem;
+}
+
+.contenido h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.thead-verde th {
+  background: var(--verde);
+  color: #fff;
+  border-color: var(--verde-oscuro);
+}

@@ -1,36 +1,55 @@
-<?php require_once 'pages/common/header.php'; ?>
-<body class="d-flex flex-column min-vh-100" style="background: url('images/login.avif') center / cover no-repeat fixed;">
+<?php
+require_once __DIR__ . '/../includes/auth.php';
 
-  <main class="flex-grow-1 d-flex align-items-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-4">
+require_once __DIR__ . '/../includes/helpers.php';
 
-          <div class="card shadow">
-            <div class="card-body p-4">
-              <h3 class="text-center mb-4">Iniciar sesión</h3>
+require_once __DIR__ . '/../config/database.php';
 
-              <form action="pages/dashboard.php">
-                <div class="mb-3">
-                  <label class="form-label">Usuario</label>
-                  <input type="text" class="form-control">
-                </div>
+startSession();
 
-                <div class="mb-4">
-                  <label class="form-label">Contraseña</label>
-                  <input type="password" class="form-control">
-                </div>
+if (isset($_SESSION['usuario_id']) || restaurarSesionRecordada()) {
+    header('Location: /pages/dashboard.php');
+    exit;
+}
 
-                <button class="btn btn-primary w-100">Ingresar</button>
-              </form>
+$mensajes = [
+    'datos' => 'Escriba el correo y la contraseña.',
+    'credenciales' => 'Correo o contraseña incorrectos.',
+    'sesion' => 'Debe iniciar sesión para continuar.',
+    'expirada' => 'La sesión se cerró por inactividad. Inicie sesión de nuevo.',
+    'bloqueada' => 'La cuenta está bloqueada temporalmente por demasiados intentos fallidos. Intente más tarde.',
+];
 
-              <p class="text-center mt-3 mb-0"><a href="#">Registrarse</a></p>
-            </div>
-          </div>
+$mensaje = $mensajes[$_GET['error'] ?? ''] ?? '';
 
-        </div>
+$titulo = 'Iniciar sesión';
+require __DIR__ . '/pages/common/header.php';
+?>
+<main class="login">
+  <div class="card p-4 w-100" style="max-width: 380px;">
+    <h1 class="h4 mb-1">Iniciar sesión</h1>
+    <p class="text-muted small mb-4">Inventario y préstamos del laboratorio</p>
+
+    <?php if ($mensaje !== ''): ?>
+      <div class="alert alert-danger" role="alert"><?= e($mensaje) ?></div>
+    <?php endif; ?>
+
+    <form action="/actions/login.php" method="POST">
+      <?= campoCsrf() ?>
+      <div class="form-group">
+        <label for="correo">Correo</label>
+        <input type="email" class="form-control" id="correo" name="correo" required autofocus>
       </div>
-    </div>
-  </main>
-
-<?php require_once 'pages/common/footer.php'; ?>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="recordarme" name="recordarme" value="1">
+        <label class="form-check-label" for="recordarme">Recordarme</label>
+      </div>
+      <button type="submit" class="btn btn-verde btn-block">Entrar</button>
+    </form>
+  </div>
+</main>
+<?php require __DIR__ . '/pages/common/footer.php'; ?>
